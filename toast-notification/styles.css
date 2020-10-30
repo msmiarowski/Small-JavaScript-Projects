@@ -1,0 +1,18 @@
+button {
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+#container {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.toast {
+  padding: 1rem;
+  background: #2980b9;
+  color: white;
+  border-radius: 6px;
+  margin: .5rem;
+}

@@ -1,0 +1,21 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+.carousel {
+  overflow: hidden;
+  max-width: 600px;
+  height: 0;
+  padding-bottom: 52.25%;
+}
+.image-container {
+  display: flex;
+  transition:  transform .3s linear;
+}
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

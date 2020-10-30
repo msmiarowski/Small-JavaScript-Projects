@@ -1,0 +1,43 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+button {
+  padding: .5rem;
+  border-radius: 6px;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.5);
+  
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.modal-container.active {
+  display: flex;
+}
+
+.modal {
+  background-color: white;
+  padding: 1rem;
+  max-width: 600px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,.3);
+  position: relative;
+}
+
+.modal button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #2980b9;
+  background-color: white;
+}

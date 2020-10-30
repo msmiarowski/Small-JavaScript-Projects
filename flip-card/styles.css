@@ -1,0 +1,58 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+.card {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform .8s;
+  transform-style: preserve-3d;
+}
+.card.clicked {
+  transform: rotateY(180deg);
+}
+.card > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 8px;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  -webkit-box-shadow: 3px 3px 10px 3px rgba(51,51,51,.25);
+  box-shadow: 3px 3px 10px 3px rgba(51,51,51,.25);
+}
+.card > div h3 {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+.front {
+  background-color: #3498db;
+}
+.back {
+  background-color: #2980b9;
+  transform: rotateY(180deg);
+}
+.flip {
+  margin-top: 1rem;
+  background-color: #ecf0f1;
+  color: #000;
+  font-weight: 900;
+}

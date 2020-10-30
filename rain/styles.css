@@ -1,0 +1,18 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+.drop {
+  position: fixed;
+  top: -1vh;
+  transform: translateY(0);
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform:  translateY(105vh);
+  }
+}

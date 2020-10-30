@@ -1,0 +1,19 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+#container {
+  width: 500px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,.3);
+  display: flex;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform-origin: center center;
+}
