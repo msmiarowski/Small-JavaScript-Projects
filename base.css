@@ -12,6 +12,11 @@ body {
   min-height:  100vh;
   margin: 0;
   flex-direction: column;
+  padding: 1.5rem;
+}
+
+h1 {
+  text-align: center;
 }
 
 button {
@@ -24,9 +29,6 @@ button {
   cursor: pointer;
 }
 
-#main {
-  max-width: 70vw;
-}
 #main ul {
   list-style-type: none;
   margin: 0;
@@ -47,4 +49,11 @@ button {
 }
 #main li a:hover {
   background-color: #3498db;
+}
+
+/* 1024 px */
+@media only screen and (min-width: 64rem) {
+  #main {
+    max-width: 70vw;
+  }
 }
