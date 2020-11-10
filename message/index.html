@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>title</title>
+
+  <link rel="stylesheet" href="../base.css" />  
+  <link rel="stylesheet" href="message/styles.css" />  
+</head>
+<body>
+  <h1>Secret Message</h1>
+
+  <div id="message-show" class="hide">
+    <h3>Decoded Message:</h3>
+    <div id="create-you-own"></div>
+    <div>
+      <a href="message/index.html">Create your own secret message</a>
+    </div>
+  </div>
+
+  <div id="message-form">
+    <form>
+      <label>Enter a Secret Message</label>
+      <input id="message-input" class="input" type="text" />
+      <button>Create</button>
+    </form>
+  </div>
+
+  <div id="link-form" class="hide">
+    <div>
+      <h3>Share this link with a friend</h3>
+      <input id="link-input" class="input" type="text" />
+    </div>
+  </div>
+
+  <script src="message/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+.hide {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+form > * {
+  margin: .5rem 0;
+}
+.input,
+#create-you-own {
+  border: none;
+  padding: .5rem;
+  border-bottom: solid 2px #3498db;
+  background-color: rgba(52,152,219,.3);
+  transition: background-color .3s ease;
+}
+.input:focus {
+  border-bottom: solid 2px #2980b9;
+  background-color: rgba(52,152,219,.2);
+  outline: none;
+}
+form button {
+  width: 100px;
+}
+
+#create-you-own {
+  margin-bottom: 1rem;
+}
+#message-show a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color .3s ease;
+}
+#message-show a:hover {
+  color: #2980b9;
+}
+
+@media only screen and (min-width: 50rem) {
+  .input {
+    width: 50vw;
+  }
+}
