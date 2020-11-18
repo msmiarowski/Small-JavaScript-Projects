@@ -1,0 +1,25 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+#grid {
+  width: min(70%, 600px);
+  height: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  grid-template-rows: repeat(3, 33.3%);
+}
+.grid-item {
+  border: solid 1px #2980b9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(41, 128, 185, .4);
+}
+#drag-me {
+  background-color: #3498db;
+  padding: 20px;
+  cursor: pointer;
+}
