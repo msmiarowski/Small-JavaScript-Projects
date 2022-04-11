@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>title</title>
+
+  <link rel="stylesheet" href="../base.css" />  
+  <link rel="stylesheet" href="./styles.css" />  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+</head>
+<body>
+  <h1>Timer</h1>
+
+  <div id="timer-wrapper">
+    <div id="hour" class="timer-inputs">
+      <input class="timer-number" type="number" min="0" max="9" value="0">
+      <input class="timer-number" type="number" min="0" max="9" value="0">
+    </div>
+    <div id="min" class="timer-inputs">
+      <input class="timer-number" type="number" min="0" max="9" value="0">
+      <input class="timer-number" type="number" min="0" max="9" value="0">
+    </div>
+    <div id="sec" class="timer-inputs">
+      <input class="timer-number" type="number" min="0" max="9" value="0">
+      <input class="timer-number" type="number" min="0" max="9" value="0">
+    </div>
+  </div>
+
+  <div id="controls">
+    <button id="start"><i class="fas fa-play"></i></button>
+    <button id="pause"><i class="fas fa-pause"></i></button>
+  </div>
+
+  <script src="./scripts.js"></script>
+</body>
+</html>

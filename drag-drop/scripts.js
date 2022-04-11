@@ -1,3 +1,8 @@
+/* 
+STRETCH GOAL
+- MAKE THE BOARD MOBILE/TOUCH FRIENDLY FOR DRAG AND DROP
+*/
+
 let dragged;
 
 // events fired on the draggable target

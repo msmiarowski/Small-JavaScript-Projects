@@ -9,6 +9,8 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Fira Sans', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
   min-height:  100vh;
   margin: 0;
   flex-direction: column;
@@ -49,6 +51,10 @@ button {
 }
 #main li a:hover {
   background-color: #3498db;
+}
+
+.wrapper {
+  max-width: 960px;
 }
 
 /* 1024 px */

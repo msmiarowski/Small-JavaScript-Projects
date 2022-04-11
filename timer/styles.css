@@ -1,0 +1,13 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+#timer-wrapper {
+  display: flex;
+}
+.timer-inputs:not(:last-child):after {
+  content: ":";
+  padding-right: 4px;
+}
