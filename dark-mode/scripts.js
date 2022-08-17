@@ -1,5 +1,16 @@
-const toggle = document.getElementById('toggle');
+window.addEventListener('load', () => {
+  let theme = localStorage.getItem('theme');
+  let toggle = document.getElementById('toggle');
 
-toggle.addEventListener('change', (e) => {
+  if(theme === 'dark') {
+    document.body.classList.add('dark');
+    toggle.checked = true;
+  }
+});
+
+document.getElementById('toggle').addEventListener('change', (e) => {
+  let value = e.target.checked;
+  
+  value ? localStorage.setItem('theme', 'dark') : localStorage.clear();
   document.body.classList.toggle('dark', e.target.checked);
-})
+});
