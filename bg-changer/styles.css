@@ -4,6 +4,17 @@
 #3498db - LIGHTER
 */
 
+button {
+  margin-top: 10px;
+}
 button:focus {
   outline: none;
+}
+#text-wrapper {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
