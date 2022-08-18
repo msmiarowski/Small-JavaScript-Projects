@@ -54,24 +54,23 @@ function updateBoard() {
   const board = Array.from(document.querySelectorAll('.grid-item'));
   board.forEach((el, i) => {
     let elClassArr = Array.from(el.classList);
-    console.log(elClassArr, i);
     if(elClassArr.includes('selected')) {
       localStorage.setItem('position', i.toString());
     }
   });
-  console.log(localStorage);
 }
-
 
 window.addEventListener('load', () => {
   const board = Array.from(document.querySelectorAll('.grid-item'));
   let position = localStorage.getItem('position');
-  position = parseInt(position);
   
   // move piece to last location
   if(position) {
-
+    position = parseInt(position); // convert to num here, if index is 0 it will == false
+    board[position].classList.add('selected');
+    board[position].innerHTML = span;
   } else {
     board[4].classList.add('selected');
+    board[4].innerHTML = span;
   }
 });
