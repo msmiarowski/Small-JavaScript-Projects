@@ -1,0 +1,26 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+h1 {
+  background-color: #3498db;
+  width: 100%;
+  display: flex;
+  height: 120px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.post h2 {
+  font-size: 4rem;
+  line-height: .9;
+  margin: 7rem 0 0 0;
+}
+.post:first-child h2 {
+  margin-top: 10rem;
+}
