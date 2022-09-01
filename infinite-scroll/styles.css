@@ -3,7 +3,7 @@
 #2980b9 - DARKER
 #3498db - LIGHTER
 */
-h1 {
+#title {
   background-color: #3498db;
   width: 100%;
   display: flex;
@@ -15,6 +15,11 @@ h1 {
   top: 0;
   left: 0;
   right: 0;
+  transition: all 0.5s;
+}
+#title.small {
+  height: 50px;
+  font-size: 1.5rem;
 }
 .post h2 {
   font-size: 4rem;
