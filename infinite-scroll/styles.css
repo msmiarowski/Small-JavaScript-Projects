@@ -21,11 +21,22 @@
   height: 50px;
   font-size: 1.5rem;
 }
+#posts {
+  max-width: 700px;
+}
 .post h2 {
-  font-size: 4rem;
+  font-size: 2rem;
   line-height: .9;
-  margin: 7rem 0 0 0;
+  margin: 3.5rem 0 0 0;
+  transition: all 0.3s;
 }
 .post:first-child h2 {
   margin-top: 10rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .post h2 {
+    font-size: 4rem;
+    margin: 7rem 0 0 0;
+  }
 }
