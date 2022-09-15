@@ -9,6 +9,15 @@
   box-sizing: border-box;
 }
 
+.hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
 body {
   display: flex;
   align-items: center;
@@ -34,6 +43,10 @@ button {
   border-radius: 6px;
   padding: .5rem;
   cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+button:hover {
+  background-color: #3498db;
 }
 button:disabled,
 button[disabled] {
@@ -72,7 +85,6 @@ button:not(:disabled).error {
   /* background-color: #c0392b; */
   background-color: rgba(192, 57, 43, .35);
   color: #c0392b;
-  transition: all .3s ease-in-out;
 }
 button:not(:disabled).error:hover {
   background-color: rgba(192, 57, 43, 1);
