@@ -15,6 +15,7 @@ body {
 
 button {
   border: none;
+  font-size: 30px;
   padding: .75rem;
   line-height: 1;
   position: fixed;
@@ -24,7 +25,7 @@ button {
   transition: transform .3s ease-in-out;
 }
 button.active {
-  transform: translateX(-135px);
+  transform: translateX(-145px);
 }
 
 nav {
