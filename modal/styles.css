@@ -40,4 +40,6 @@ button {
   right: 10px;
   color: #2980b9;
   background-color: white;
+  font-size: 20px;
+  font-weight: 800;
 }
