@@ -1,0 +1,98 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+body {
+  overflow: hidden;
+}
+.description {
+  width: 95vw;
+  text-align: center;
+}
+#icon {
+  --xPos: 0px;
+  --yPos: 0px;
+  transform: translate3d(var(--xPos), var(--yPos), 0);
+  position: fixed;
+  left: 20px;
+  top: 10px;
+  z-index: 1000;
+  pointer-events: none;
+  transition: .2s ease-out opacity;
+}
+#iconInner {
+  animation: ghostBounce 5s ease-in-out infinite;
+  filter: drop-shadow(0px 2px 10px #666);
+  font-size: 50px;
+}
+#iconInner.ghost {
+  border-radius: 50%;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+80,ffffff+87&1+80,0+87 */
+  background: -moz-linear-gradient(top,  rgba(255,255,255,1) 80%, rgba(255,255,255,0) 87%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 80%,rgba(255,255,255,0) 87%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(255,255,255,1) 80%,rgba(255,255,255,0) 87%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+#iconOuter {
+  animation: ghostSlide 10s ease-in-out infinite;
+}
+
+.embed-container { 
+  position: relative; 
+  padding-bottom: 0; 
+  height: 0; 
+  overflow: hidden; 
+  max-width: 100%; 
+  transition: all ease-in-out .3s;
+} 
+.embed-container.active {
+  padding-bottom: 56.25%;
+}
+.embed-container iframe, 
+.embed-container object, 
+.embed-container embed { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+
+@keyframes ghostSlide {
+  0% {
+    transform: translateX(-20px);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes ghostBounce {
+  0% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+/* 640 px */
+@media only screen and (min-width: 40rem) {
+  .description {
+    width: 75vw;
+  }
+}
+
+/* 1024 px */
+@media only screen and (min-width: 64rem) {
+  .description {
+    width: 55vw;
+  }
+}
