@@ -1,0 +1,45 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+#weather {
+  display: none;
+  justify-content: space-around;
+  width: 80vw;
+  margin-top: 2rem;
+}
+#weather.active {
+  display: flex;
+}
+.weather-data {
+  border: solid 1px #3498db;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 18%;
+  padding: 1rem;
+  -webkit-box-shadow: 2px 3px 10px 0 rgba(0,0,0,.1);
+  box-shadow: 2px 3px 10px 0 rgba(0,0,0,.1);
+}
+.location {
+  font-weight: 300;
+  color: #3498db;
+  margin: 0;
+}
+.location sup {
+  color: #fff;
+  background-color: #3498db;
+  font-size: .7rem;
+  padding: .1rem .35rem;
+  border-radius: 20px;
+  margin-left: .3rem;
+}
+.temp {
+  font-size: 3rem;
+}
+.desc, .icon {
+  font-size: .9rem;
+}
