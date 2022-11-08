@@ -1,10 +1,14 @@
 const form = document.getElementById('weather-form');
 const input = document.getElementById('weather-input');
+const cityList = document.getElementById('city-list');
 const weatherDisplay = document.getElementById('weather');
 const apiId = 'ed9769a71f9020927347e6771be83c82';
 const currentWeather = 'https://api.openweathermap.org/data/2.5/weather';
-const forecast = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}';
+const weatherForecast = 'https://api.openweathermap.org/data/2.5/forecast';
 const weatherByCity = 'https://api.openweathermap.org/geo/1.0/direct';
+
+let prevValue = '';
+let searchList = '';
 
 // on load ask for location
 window.addEventListener('load', () => {
@@ -25,21 +29,62 @@ form.addEventListener('submit', e => {
     // if number
     console.log(input.value);
   } else {
-    // string
-    console.log(input.value)    
+    // string - get weather by city name
+    console.log(input.value)
+    getCityInfo(input.value);
   }
 });
 
+const debounce = (func, wait) => {
+  let timeout;
+
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+const getInputValue = debounce(async (value) => {
+  if(!value) {
+    cityList.innerHTML = '';
+    return;
+  }
+  if(prevValue == value) return;
+  
+  let cities = await getCityInfo(value);
+  prevValue = value;
+  searchList = '';
+  
+  displaySearchList(cities);
+}, 500);
+
+input.addEventListener('keyup', e => getInputValue(e.target.value));
+
+function displaySearchList(cities) {
+  console.log(searchList);
+  cities.forEach(city => {
+    searchList += `<div>
+      <button onclick="getForecast(${city.lat}, ${city.lon})">${city.name}, ${city.state}</button>
+    </div>
+    `;
+  });
+  cityList.innerHTML = '';
+  cityList.innerHTML = searchList;
+}
 
 async function getLocalWeather(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
 
-  getCurrentWeather(lat, lon);
+  weatherByLatLon(lat, lon);
 }
 
 // call weather api
-async function getCurrentWeather(lat, lon) {
+async function weatherByLatLon(lat, lon) {
   let response = await fetch(`${currentWeather}?lat=${lat}&lon=${lon}&appid=${apiId}&units=imperial`);
   let weather = await response.json();
 
@@ -48,32 +93,59 @@ async function getCurrentWeather(lat, lon) {
 
 // user did not allow location
 async function getDefaultFive() {
-  const defaultCities = ['New York City', 'London', 'Montreal', 'Tokyo', 'Sydney'];
+  const defaultCities = ['San Francisco', 'London', 'Montreal', 'Tokyo', 'Sydney'];
   
   for(let i = 0; i < defaultCities.length; i++) {
-    let response = await fetch(`${weatherByCity}?q=${defaultCities[i]}&appid=${apiId}`);
-    let weather = await response.json();
-
-    getCurrentWeather(weather[0].lat, weather[0].lon);
+    let city = await getCityInfo(defaultCities[i]);
+    weatherByLatLon(city[0].lat, city[0].lon);
   }
 }
 
-function getForecast() {
-  console.log(`${forecast}?lat=${lat}&lon=${lon}&appid=${apiId}`);
+async function getCityInfo(city) {
+  let response = await fetch(`${weatherByCity}?q=${city}&limit=10&appid=${apiId}`);
+  let cityInfo = await response.json();
+
+  return cityInfo;
+}
+
+async function getForecast(lat, lon) {
+  let response = await fetch(`${weatherForecast}?lat=${lat}&lon=${lon}&appid=${apiId}`);
+  let forecast = await response.json();
+
+  console.log(forecast);
+  generateForecast(forecast.list)
 }
 
 // generate DOM view
 function generateView(data) {
-  // console.log(data);
   let display = `<div class="weather-data">
     <h3 class="location"><span>${data.name}</span><sup>${data.sys.country}</sup></h3>
     <span class="temp">${Math.round(data.main.temp)}&deg;</span>
     <span class="icon">${weatherIcon(data.weather[0].id)}</span>
     <span class="desc">${data.weather[0].description}</span>
     </div>`;
-  // weatherDisplay.insertAdjacentHTML('afterbegin', ``);
   weatherDisplay.insertAdjacentHTML('beforeend', display);
   weatherDisplay.classList.add('active');
+}
+
+function generateForecast(data) {
+  filtered = data.filter((el, i) => {
+    if(i % 8 === 0) {
+      return el;
+    }
+  });
+  filtered.forEach(el => {
+    console.log(el);
+    console.log(formatDate(el.dt_txt));
+  })
+}
+
+function formatDate(dateString) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  let allDate = dateString.split(' ');
+  let thisDate = allDate[0].split('-');
+  return `${months[thisDate[1] - 1]}, ${thisDate[2]}`; // returning date like "Nov, 18"
 }
 
 function weatherIcon(id) {

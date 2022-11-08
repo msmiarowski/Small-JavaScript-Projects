@@ -7,11 +7,12 @@
 #weather {
   display: none;
   justify-content: space-around;
-  width: 80vw;
+  width: 70vw;
   margin-top: 2rem;
 }
 #weather.active {
   display: flex;
+  flex-wrap: wrap;
 }
 .weather-data {
   border: solid 1px #3498db;
@@ -19,10 +20,11 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  flex-basis: 18%;
+  flex-basis: 100%;
   padding: 1rem;
   -webkit-box-shadow: 2px 3px 10px 0 rgba(0,0,0,.1);
   box-shadow: 2px 3px 10px 0 rgba(0,0,0,.1);
+  margin-bottom: 2rem;
 }
 .location {
   font-weight: 300;
@@ -42,4 +44,31 @@
 }
 .desc, .icon {
   font-size: .9rem;
+}
+
+/* 400 px */
+@media only screen and (min-width: 25rem) {
+  .weather-data {
+    flex-basis: 45%;
+  }
+}
+
+/* 640px */
+@media only screen and (min-width: 40rem) {
+  #weather {
+    width: 75vw;
+  }
+  .weather-data {
+    flex-basis: 30%;
+  }
+}
+
+/* 1000px */
+@media only screen and (min-width: 62.5rem) {
+  #weather {
+    width: 80vw;
+  }
+  .weather-data {
+    flex-basis: 18%;
+  }
 }
