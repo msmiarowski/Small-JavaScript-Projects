@@ -31,9 +31,21 @@ form.addEventListener('submit', e => {
   } else {
     // string - get weather by city name
     console.log(input.value)
-    getCityInfo(input.value);
+    clearResults();
+    searchWeather(input.value);
   }
 });
+
+async function searchWeather(input) {
+  let city = await getCityInfo(input);
+  getForecast(city[0].lat, city[0].lon);
+}
+
+function clearResults() {
+  while(weatherDisplay.firstChild) {
+    weatherDisplay.removeChild(weatherDisplay.firstChild);
+  }
+}
 
 const debounce = (func, wait) => {
   let timeout;
@@ -100,7 +112,7 @@ async function getLocalWeather(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
 
-  weatherByLatLon(lat, lon);
+  getForecast(lat, lon);
 }
 
 // call weather api
@@ -122,7 +134,6 @@ async function getDefaultFive() {
 }
 
 async function getCityInfo(city) {
-  console.log(city);
   let response = await fetch(`${weatherByCity}?q=${city}&limit=10&appid=${apiId}`);
   let cityInfo = await response.json();
 
@@ -130,13 +141,13 @@ async function getCityInfo(city) {
 }
 
 async function getForecast(lat, lon) {
-  let response = await fetch(`${weatherForecast}?lat=${lat}&lon=${lon}&appid=${apiId}`);
+  let response = await fetch(`${weatherForecast}?lat=${lat}&lon=${lon}&appid=${apiId}&units=imperial`);
   let forecast = await response.json();
 
-  console.log(forecast);
   input.value = '';
   cityList.classList.remove('active');
-  generateForecast(forecast.list)
+  clearResults();
+  generateForecast(forecast.list, forecast.city)
 }
 
 // generate DOM view
@@ -151,15 +162,27 @@ function generateView(data) {
   weatherDisplay.classList.add('active');
 }
 
-function generateForecast(data) {
-  filtered = data.filter((el, i) => {
+function generateForecast(forecast, city) {
+  filtered = forecast.filter((el, i) => {
     if(i % 8 === 0) {
       return el;
     }
   });
+  console.log(forecast, city);
+  weatherDisplay.insertAdjacentHTML('afterbegin', `<h3>Forecast for ${city.name}</h3>`);
+
   filtered.forEach(el => {
-    console.log(el);
-    console.log(formatDate(el.dt_txt));
+    // console.log(el);
+    // console.log(formatDate(el.dt_txt));
+
+    let display = `<div class="weather-data">
+    <h3 class="location"><span>${formatDate(el.dt_txt)}</span></h3>
+    <span class="temp">${Math.round(el.main.temp)}&deg;</span>
+    <span class="icon">${weatherIcon(el.weather[0].id)}</span>
+    <span class="desc">${el.weather[0].description}</span>
+    </div>`;
+    weatherDisplay.insertAdjacentHTML('beforeend', display);
+    weatherDisplay.classList.add('active');
   })
 }
 
