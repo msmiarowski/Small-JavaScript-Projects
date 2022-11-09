@@ -4,6 +4,48 @@
 #3498db - LIGHTER
 */
 
+#form-wrap {
+  position: relative;
+  width: 260px;
+}
+#city-list {
+  position: absolute;
+  top: 35px;
+  padding: .5rem;
+  border: solid 1px #3498db;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 3px 10px 0 rgba(0,0,0,.3);
+  box-shadow: 2px 3px 10px 0 rgba(0,0,0,.3);
+  width: 100%;
+  display: none;
+}
+#city-list.active {
+  display: block;
+}
+#city-list .list-item {
+  width: 100%;
+  margin-bottom: .5rem;
+}
+#city-list .list-item button {
+  display: flex;
+  align-content: center;
+}
+#city-list .list-item .country {
+  color: #3498db;
+  background-color: #fff;
+  font-size: .7rem;
+  padding: .1rem .35rem;
+  border-radius: 20px;
+  margin-left: .3rem;
+}
+#city-list .helper-text {
+  font-size: .9rem;
+}
+#city-list .helper-text em {
+  font-weight: 800;
+}
+
 #weather {
   display: none;
   justify-content: space-around;

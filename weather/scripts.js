@@ -51,6 +51,7 @@ const debounce = (func, wait) => {
 const getInputValue = debounce(async (value) => {
   if(!value) {
     cityList.innerHTML = '';
+    cityList.classList.remove('active');
     return;
   }
   if(prevValue == value) return;
@@ -65,15 +66,34 @@ const getInputValue = debounce(async (value) => {
 input.addEventListener('keyup', e => getInputValue(e.target.value));
 
 function displaySearchList(cities) {
-  console.log(searchList);
-  cities.forEach(city => {
-    searchList += `<div>
-      <button onclick="getForecast(${city.lat}, ${city.lon})">${city.name}, ${city.state}</button>
-    </div>
-    `;
-  });
+  if(cities.length === 0) {
+    searchList += `<span class="helper-text">No results matching <em>${input.value}</em></span>`;
+  } else {
+    cities.forEach(city => {
+      if(city.state) {
+        searchList += `<div class="list-item">
+          <button onclick="getForecast(${city.lat}, ${city.lon})">
+            ${city.name}, ${city.state} 
+            <span class="country">${city.country}</span>
+          </button>
+        </div>
+        `;
+      } else {
+        searchList += `<div class="list-item">
+          <button onclick="getForecast(${city.lat}, ${city.lon})">
+            ${city.name}
+            <span class="country">${city.country}</span>
+          </button>
+        </div>
+        `;
+      }
+      
+    });
+  }
+
   cityList.innerHTML = '';
   cityList.innerHTML = searchList;
+  cityList.classList.add('active');
 }
 
 async function getLocalWeather(position) {
@@ -102,6 +122,7 @@ async function getDefaultFive() {
 }
 
 async function getCityInfo(city) {
+  console.log(city);
   let response = await fetch(`${weatherByCity}?q=${city}&limit=10&appid=${apiId}`);
   let cityInfo = await response.json();
 
@@ -113,6 +134,8 @@ async function getForecast(lat, lon) {
   let forecast = await response.json();
 
   console.log(forecast);
+  input.value = '';
+  cityList.classList.remove('active');
   generateForecast(forecast.list)
 }
 
