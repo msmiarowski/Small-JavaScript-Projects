@@ -1,4 +1,5 @@
 const form = document.getElementById('weather-form');
+const formWrapper = document.getElementById('form-wrap');
 const input = document.getElementById('weather-input');
 const cityList = document.getElementById('city-list');
 const weatherDisplay = document.getElementById('weather');
@@ -21,6 +22,14 @@ window.addEventListener('load', () => {
   );
 });
 
+document.addEventListener('click', e => {
+  if(!formWrapper.contains(e.target)) {
+    if(cityList.classList.contains('active')) {
+      cityList.classList.remove('active');
+    }
+  }
+});
+
 form.addEventListener('submit', e => {
   e.preventDefault();
   if(!input.value) return;
@@ -38,7 +47,7 @@ form.addEventListener('submit', e => {
 
 async function searchWeather(input) {
   let city = await getCityInfo(input);
-  getForecast(city[0].lat, city[0].lon);
+  getForecast(city[0].lat, city[0].lon, city[0]);
 }
 
 function clearResults() {
@@ -140,14 +149,18 @@ async function getCityInfo(city) {
   return cityInfo;
 }
 
-async function getForecast(lat, lon) {
+async function getForecast(lat, lon, city = undefined) {
   let response = await fetch(`${weatherForecast}?lat=${lat}&lon=${lon}&appid=${apiId}&units=imperial`);
   let forecast = await response.json();
 
   input.value = '';
   cityList.classList.remove('active');
   clearResults();
-  generateForecast(forecast.list, forecast.city)
+  if(city == undefined) {
+    generateForecast(forecast.list, forecast.city);
+  } else {
+    generateForecast(forecast.list, city);
+  }
 }
 
 // generate DOM view
@@ -168,13 +181,14 @@ function generateForecast(forecast, city) {
       return el;
     }
   });
-  console.log(forecast, city);
-  weatherDisplay.insertAdjacentHTML('afterbegin', `<h3>Forecast for ${city.name}</h3>`);
+  if(city.state == undefined) {
+    weatherDisplay.insertAdjacentHTML('afterbegin', `<h3 class="location">Forecast for ${city.name}</h3>`);
+  } else {
+    weatherDisplay.insertAdjacentHTML('afterbegin', `<h3 class="location">Forecast for ${city.name}, ${city.state}</h3>`);
+  }
+  
 
   filtered.forEach(el => {
-    // console.log(el);
-    // console.log(formatDate(el.dt_txt));
-
     let display = `<div class="weather-data">
     <h3 class="location"><span>${formatDate(el.dt_txt)}</span></h3>
     <span class="temp">${Math.round(el.main.temp)}&deg;</span>
