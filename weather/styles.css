@@ -1,0 +1,123 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+#form-wrap {
+  position: relative;
+  width: 260px;
+}
+#weather-input {
+  border: solid 1px #3498db;
+  border-radius: 4px;
+  padding: 6px 5px;
+}
+#city-list {
+  position: absolute;
+  top: 35px;
+  padding: .5rem;
+  border: solid 1px #3498db;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 3px 10px 0 rgba(0,0,0,.3);
+  box-shadow: 2px 3px 10px 0 rgba(0,0,0,.3);
+  width: 100%;
+  display: none;
+}
+#city-list.active {
+  display: block;
+}
+#city-list .list-item {
+  width: 100%;
+  margin-bottom: .5rem;
+}
+#city-list .list-item button {
+  display: flex;
+  align-content: center;
+}
+#city-list .list-item .country {
+  color: #3498db;
+  background-color: #fff;
+  font-size: .7rem;
+  padding: .1rem .35rem;
+  border-radius: 20px;
+  margin-left: .3rem;
+}
+#city-list .helper-text {
+  font-size: .9rem;
+}
+#city-list .helper-text em {
+  font-weight: 800;
+}
+
+#weather {
+  display: none;
+  justify-content: space-around;
+  width: 70vw;
+  margin-top: 2rem;
+}
+#weather.active {
+  display: flex;
+  flex-wrap: wrap;
+}
+.weather-data {
+  border: solid 1px #3498db;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  padding: 1rem;
+  -webkit-box-shadow: 2px 3px 10px 0 rgba(0,0,0,.1);
+  box-shadow: 2px 3px 10px 0 rgba(0,0,0,.1);
+  margin-bottom: 2rem;
+}
+.location {
+  font-weight: 300;
+  color: #3498db;
+  margin: 0 0 1.5rem 0;
+  flex-basis: 100%;
+  text-align: center;
+}
+.location sup {
+  color: #fff;
+  background-color: #3498db;
+  font-size: .7rem;
+  padding: .1rem .35rem;
+  border-radius: 20px;
+  margin-left: .3rem;
+}
+.temp {
+  font-size: 3rem;
+}
+.desc, .icon {
+  font-size: .9rem;
+}
+
+/* 400 px */
+@media only screen and (min-width: 25rem) {
+  .weather-data {
+    flex-basis: 45%;
+  }
+}
+
+/* 640px */
+@media only screen and (min-width: 40rem) {
+  #weather {
+    width: 75vw;
+  }
+  .weather-data {
+    flex-basis: 30%;
+  }
+}
+
+/* 1000px */
+@media only screen and (min-width: 62.5rem) {
+  #weather {
+    width: 80vw;
+  }
+  .weather-data {
+    flex-basis: 18%;
+  }
+}
