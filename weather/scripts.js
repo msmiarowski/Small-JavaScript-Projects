@@ -7,6 +7,7 @@ const apiId = 'ed9769a71f9020927347e6771be83c82';
 const currentWeather = 'https://api.openweathermap.org/data/2.5/weather';
 const weatherForecast = 'https://api.openweathermap.org/data/2.5/forecast';
 const weatherByCity = 'https://api.openweathermap.org/geo/1.0/direct';
+const weatherByZip = 'https://api.openweathermap.org/geo/1.0/zip';
 
 let prevValue = '';
 let searchList = '';
@@ -35,19 +36,24 @@ form.addEventListener('submit', e => {
   if(!input.value) return;
   
   if(parseInt(input.value)) {
-    // if number
-    console.log(input.value);
+    // if number (i.e. - zip code)
+    clearResults();
+    searchWeather(`${weatherByZip}?zip=${input.value}&appid=${apiId}`);
   } else {
     // string - get weather by city name
-    console.log(input.value)
     clearResults();
-    searchWeather(input.value);
+    searchWeather(`${weatherByCity}?q=${input.value}&limit=10&appid=${apiId}`);
   }
 });
 
-async function searchWeather(input) {
-  let city = await getCityInfo(input);
-  getForecast(city[0].lat, city[0].lon, city[0]);
+async function searchWeather(query) {
+  let city = await getCityInfo(query);
+  if(city.length > 0) {
+    getForecast(city[0].lat, city[0].lon, city[0]);
+  } else {
+    getForecast(city.lat, city.lon, city);
+  }
+  
 }
 
 function clearResults() {
@@ -77,7 +83,7 @@ const getInputValue = debounce(async (value) => {
   }
   if(prevValue == value) return;
   
-  let cities = await getCityInfo(value);
+  let cities = await getCityInfo(`${weatherByCity}?q=${value}&limit=10&appid=${apiId}`);
   prevValue = value;
   searchList = '';
   
@@ -137,15 +143,16 @@ async function getDefaultFive() {
   const defaultCities = ['San Francisco', 'London', 'Montreal', 'Tokyo', 'Sydney'];
   
   for(let i = 0; i < defaultCities.length; i++) {
-    let city = await getCityInfo(defaultCities[i]);
+    let city = await getCityInfo(`${weatherByCity}?q=${defaultCities[i]}&limit=10&appid=${apiId}`);
     weatherByLatLon(city[0].lat, city[0].lon);
   }
 }
 
-async function getCityInfo(city) {
-  let response = await fetch(`${weatherByCity}?q=${city}&limit=10&appid=${apiId}`);
+async function getCityInfo(query) {
+  // let response = await fetch(`${weatherByCity}?q=${city}&limit=10&appid=${apiId}`);
+  let response = await fetch(query);
   let cityInfo = await response.json();
-
+  
   return cityInfo;
 }
 
