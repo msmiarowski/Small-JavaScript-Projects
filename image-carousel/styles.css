@@ -15,7 +15,7 @@
   transition:  transform .3s linear;
 }
 img {
-  width: 100%;
+  width: 600px;
   height: auto;
   object-fit: cover;
 }
