@@ -1,0 +1,27 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+.gallery-wrapper {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+.gallery-hero {
+  max-width: 600px;
+}
+.media-gallery {
+  max-width: 150px;
+}
+.gallery-img {
+  cursor: pointer;
+  transition: all ease-in-out .3s;
+}
+.gallery-img:not(.active) {
+  filter: grayscale(60%)
+  opacity(.5)
+}
+img {
+  width: 100%;
+}
