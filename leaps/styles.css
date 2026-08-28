@@ -1,0 +1,56 @@
+/* ~~~~~  COLORS  ~~~~~
+
+#2980b9 - DARKER
+#3498db - LIGHTER
+*/
+
+body {
+  padding: 0;
+  display: initial;
+}
+
+.panels {
+  display: flex;
+}
+.panel {
+  width: 33.333%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  transition: 1s;
+  -moz-transition: 1s; /* Firefox 4 */
+  -webkit-transition: 1s; /* Safari and Chrome */
+  -o-transition: 1s; /* Opera */
+  cursor: pointer;
+}
+.panel img {
+  height: 100vh;
+}
+.panel.active {
+  width: 250%;
+}
+
+.panel.second {
+  position: relative;
+}
+.panel span {
+  box-shadow: 1px 1px 10px 0px rgba(51,51,51,.4);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4rem;
+  background-color: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.panel.active div {
+  display: block;
+  background-color: rgba(255,255,255,.5);
+  position: absolute;
+  top: 60%;
+}
