@@ -13,7 +13,7 @@ body {
   display: flex;
 }
 .panel {
-  width: 33.333%;
+  width: 20%;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -23,16 +23,31 @@ body {
   -webkit-transition: 1s; /* Safari and Chrome */
   -o-transition: 1s; /* Opera */
   cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .panel img {
   height: 100vh;
 }
 .panel.active {
-  width: 250%;
+  width: 100%;
 }
 
+.panel.first {
+  background-image: url('./img/detroit-skyline-istock.jpg');
+}
 .panel.second {
-  position: relative;
+  background-image: url('./img/leaps-dia.jpeg');
+}
+.panel.third {
+  background-image: url('./img/MPHOTO-MARSAL_YthMbltySmmt25_0261.jpg');
+}
+.panel.fourth {
+  background-image: url('./img/SOE_Marygrove_Senior_Capstone_Showcase_2023_126_0.jpg');
+}
+.panel.fifth {
+  background-image: url('./img/marsal-commencement.jpg');  
 }
 .panel span {
   box-shadow: 1px 1px 10px 0px rgba(51,51,51,.4);
@@ -40,17 +55,30 @@ body {
   top: 50%;
   transform: translateY(-50%);
   font-size: 4rem;
+  font-weight: 800;
   background-color: white;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.panel div {
+  display: none;
+  width: 0;
+  transition: width 0.3s ease-in-out;
 }
 .panel.active div {
   display: block;
   background-color: rgba(255,255,255,.5);
   position: absolute;
   top: 60%;
+  width: 40%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+.panel.active div > b {
+  font-size: 1.75rem;
 }
