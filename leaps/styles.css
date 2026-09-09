@@ -9,6 +9,22 @@ body {
   display: initial;
 }
 
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* Shorthand for top:0, right:0, bottom:0, left:0 */
+  z-index: -1; /* Pushes the image behind the text layer */
+  
+  /* Apply your background properties here */
+  background-image: url('your-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Control your opacity here (0.0 to 1.0) */
+  opacity: 0.4; 
+}
+
 .panels {
   display: flex;
 }
@@ -23,10 +39,19 @@ body {
   -webkit-transition: 1s; /* Safari and Chrome */
   -o-transition: 1s; /* Opera */
   cursor: pointer;
+  position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: rgba(0,39,76,0.6);
+  background-blend-mode: luminosity;
+
 }
+/* .panel::after {
+  content: "";
+  background-color: rgba(0, 39, 76, 1);
+  position: absolute;
+} */
 .panel img {
   height: 100vh;
 }
@@ -49,11 +74,17 @@ body {
 .panel.fifth {
   background-image: url('./img/marsal-commencement.jpg');  
 }
-.panel span {
-  box-shadow: 1px 1px 10px 0px rgba(51,51,51,.4);
+.panel .default-txt {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.panel .lrg-lttr {
+  box-shadow: 1px 1px 10px 0px rgba(51,51,51,.4);
   font-size: 4rem;
   font-weight: 800;
   background-color: white;
@@ -64,12 +95,15 @@ body {
   justify-content: center;
   align-items: center;
 }
-.panel div {
+.panel .default-txt b {
+  font-size: 1.25rem;
+}
+.panel .sml-txt {
   display: none;
   width: 0;
   transition: width 0.3s ease-in-out;
 }
-.panel.active div {
+.panel.active .sml-txt {
   display: block;
   background-color: rgba(255,255,255,.5);
   position: absolute;
@@ -78,7 +112,4 @@ body {
   padding: 1rem;
   font-size: 1.5rem;
   line-height: 1.5;
-}
-.panel.active div > b {
-  font-size: 1.75rem;
 }
