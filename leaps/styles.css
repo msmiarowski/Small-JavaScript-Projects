@@ -34,7 +34,7 @@ body {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  transition: 1s;
+  transition: width ease-in-out 1s;
   -moz-transition: 1s; /* Firefox 4 */
   -webkit-transition: 1s; /* Safari and Chrome */
   -o-transition: 1s; /* Opera */
@@ -43,9 +43,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(0,39,76,0.6);
+  background-color: rgba(0,39,76,0.75);
   background-blend-mode: luminosity;
-
 }
 /* .panel::after {
   content: "";
@@ -55,24 +54,47 @@ body {
 .panel img {
   height: 100vh;
 }
+.panel i {
+  display: block;
+  font-size: 7rem;
+}
+.panel i:after {
+  color: transparent;
+}
 .panel.active {
   width: 100%;
+  background-blend-mode: inherit;
 }
 
 .panel.first {
   background-image: url('./img/detroit-skyline-istock.jpg');
+  i:before {
+    color: #00274c;
+  }
 }
 .panel.second {
   background-image: url('./img/leaps-dia.jpeg');
+  i:before {
+    color: #FFCB05;
+  }
 }
 .panel.third {
   background-image: url('./img/MPHOTO-MARSAL_YthMbltySmmt25_0261.jpg');
+  i:before {
+    color: #2F65A7;
+  }
 }
 .panel.fourth {
   background-image: url('./img/SOE_Marygrove_Senior_Capstone_Showcase_2023_126_0.jpg');
+  i:before {
+    color: #00B2A9;
+  }
 }
 .panel.fifth {
   background-image: url('./img/marsal-commencement.jpg');  
+  i:before {
+    color: #E01F7C;
+  }
 }
 .panel .default-txt {
   position: absolute;
