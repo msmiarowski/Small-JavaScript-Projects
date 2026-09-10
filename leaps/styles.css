@@ -9,29 +9,12 @@ body {
   display: initial;
 }
 
-.panel::before {
-  content: "";
-  position: absolute;
-  inset: 0; /* Shorthand for top:0, right:0, bottom:0, left:0 */
-  z-index: -1; /* Pushes the image behind the text layer */
-  
-  /* Apply your background properties here */
-  background-image: url('your-image.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  
-  /* Control your opacity here (0.0 to 1.0) */
-  opacity: 0.4; 
-}
-
 .panels {
   display: flex;
 }
 .panel {
   width: 20%;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   transition: width ease-in-out 1s;
@@ -43,23 +26,25 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(0,39,76,0.75);
   background-blend-mode: luminosity;
 }
-/* .panel::after {
-  content: "";
-  background-color: rgba(0, 39, 76, 1);
+.panel::after {
+  font-family: "Font Awesome 6 Duotone";
+  content: "\f138";
+  font-weight: 900;
+  font-size: 10rem;
   position: absolute;
-} */
+  top: 47%;
+  transform: translateY(-50%);
+  right: -70px;
+  z-index: 10;
+}
 .panel img {
   height: 100vh;
 }
 .panel i {
   display: block;
   font-size: 7rem;
-}
-.panel i:after {
-  color: transparent;
 }
 .panel.active {
   width: 100%;
@@ -68,34 +53,46 @@ body {
 
 .panel.first {
   background-image: url('./img/detroit-skyline-istock.jpg');
-  i:before {
-    color: #00274c;
+  background-color: rgba(0, 39, 76, .75);
+  .lrg-lttr {
+    background-color: #00274c;
   }
 }
+.panel.first::after { color: #00274c; }
 .panel.second {
   background-image: url('./img/leaps-dia.jpeg');
-  i:before {
-    color: #FFCB05;
+  background-color: rgba(255, 203, 5, .75);
+  .lrg-lttr {
+    background-color: #ffcb05;
   }
+  
 }
+.panel.second::after { color: #FFCB05; }
 .panel.third {
   background-image: url('./img/MPHOTO-MARSAL_YthMbltySmmt25_0261.jpg');
-  i:before {
-    color: #2F65A7;
+  background-color: rgba(47, 101, 167, .75);
+  .lrg-lttr {
+    background-color: #2F65A7;
   }
 }
+.panel.third::after { color: #2F65A7; }
 .panel.fourth {
   background-image: url('./img/SOE_Marygrove_Senior_Capstone_Showcase_2023_126_0.jpg');
-  i:before {
-    color: #00B2A9;
+  background-color: rgba(0, 178, 169, .75);
+  .lrg-lttr {
+    background-color: #00B2A9;
   }
 }
+.panel.fourth::after { color: #00B2A9; }
 .panel.fifth {
   background-image: url('./img/marsal-commencement.jpg');  
-  i:before {
-    color: #E01F7C;
+  background-color: rgba(224, 31, 124, .75);
+  .lrg-lttr {
+    background-color: #E01F7C;
   }
 }
+.panel.fifth::after { color: #E01F7C; }
+
 .panel .default-txt {
   position: absolute;
   top: 50%;
@@ -109,13 +106,16 @@ body {
   box-shadow: 1px 1px 10px 0px rgba(51,51,51,.4);
   font-size: 4rem;
   font-weight: 800;
-  background-color: white;
+  color: #fff;
   border-radius: 50%;
   width: 120px;
   height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid 2px #fff;
+  -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,.6);
+  box-shadow: 3px 3px 10px 3px rgba(0,0,0,.6);
 }
 .panel .default-txt b {
   font-size: 1.25rem;
