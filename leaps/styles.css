@@ -86,12 +86,12 @@ body {
 .panel.fourth::after { color: #00B2A9; }
 .panel.fifth {
   background-image: url('./img/marsal-commencement.jpg');  
-  background-color: rgba(224, 31, 124, .75);
+  background-color: rgb(0, 129, 170, .75);
   .lrg-lttr {
-    background-color: #E01F7C;
+    background-color: #0081AA;
   }
 }
-.panel.fifth::after { color: #E01F7C; }
+.panel.fifth::after { color: #0081AA; }
 
 .panel .default-txt {
   position: absolute;
